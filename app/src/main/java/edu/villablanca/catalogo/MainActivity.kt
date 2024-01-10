@@ -1,5 +1,8 @@
 package edu.villablanca.catalogo
 
+/**
+ *  Ejemplode app con un catalogo de componentes de compose
+ */
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,8 +12,21 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+
+import edu.villablanca.catalogo.pantallas.PantallaPrincipal
 import edu.villablanca.catalogo.ui.theme.CatalogoTheme
+
+/*
+    Lista de funciones composable de ejemplo
+    Todas en el paquete edu.villablanca.catalogo.componentes
+
+    El fichero y la función se llaman igual con prefijo "Demo".
+    Ejemplo: Text -> DemoText.kt y funcion DemoText()
+ */
+
+
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,7 +38,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    VentanaPrincipal()
+                    PantallaPrincipal(this)
                 }
             }
         }
@@ -30,17 +46,12 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun VentanaPrincipal(modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello",
-        modifier = modifier
-    )
+fun Item1(){
+    Text(text = "Esto es ventana item 1")
+}
+@Composable
+fun Item2(){
+    Text(text = "Esto es ventana item 2")
 }
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    CatalogoTheme {
-        VentanaPrincipal()
-    }
-}
+
