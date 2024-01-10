@@ -40,13 +40,15 @@ import edu.villablanca.catalogo.componentes.DemoCard
 import edu.villablanca.catalogo.componentes.DemoCheckBox
 import edu.villablanca.catalogo.componentes.DemoDialog
 import edu.villablanca.catalogo.componentes.DemoIconButton
-import edu.villablanca.catalogo.componentes.DemoImage
+import edu.villablanca.catalogo.componentes.DemoImagen
+import edu.villablanca.catalogo.componentes.DemoImagen
 import edu.villablanca.catalogo.componentes.DemoMenus
 import edu.villablanca.catalogo.componentes.DemoProgressBar
 import edu.villablanca.catalogo.componentes.DemoRadioButton
 import edu.villablanca.catalogo.componentes.DemoRatingBox
 import edu.villablanca.catalogo.componentes.DemoSlider
-import edu.villablanca.catalogo.componentes.DemoSnarckBar
+import edu.villablanca.catalogo.componentes.DemoSnackBar
+import edu.villablanca.catalogo.componentes.DemoSnackBar
 import edu.villablanca.catalogo.componentes.DemoSwitch
 import edu.villablanca.catalogo.componentes.DemoText
 import edu.villablanca.catalogo.componentes.DemoSwitch
@@ -76,13 +78,13 @@ internal val losComponentes = listOf<DemoComponente>(
     DemoComponente("Check Box", { DemoCheckBox() }, "DemoCheckBox.kt"),
     DemoComponente("Dialogos ", { DemoDialog() }, "DemoDialog.kt"),
     DemoComponente("Botón Icono", { DemoIconButton() }, "DemoIconButton.kt"),
-    DemoComponente("Imagenes", { DemoImage() }, "DemoImage.kt"),
+    DemoComponente("Imagenes", { DemoImagen() }, "DemoImagen.kt"),
     DemoComponente("Menus", { DemoMenus() }, "DemoMenus.kt"),
     DemoComponente("Progress Bar", { DemoProgressBar() }, "DemoProgressBar.kt"),
     DemoComponente("Radio Button", { DemoRadioButton() }, "DemoRadioButton.kt"),
     DemoComponente("Rating Box", { DemoRatingBox() }, "DemoRatingBox.kt"),
     DemoComponente("Slider", { DemoSlider() }, "DemoSlider.kt"),
-    DemoComponente("Snack Bar", { DemoSnarckBar() }, "DemoSnarckBar.kt"),
+    DemoComponente("Snack Bar", { DemoSnackBar() }, "DemoSnackBar.kt"),
 )
 /**
  * Pantalla principal con scaffold y navegación.

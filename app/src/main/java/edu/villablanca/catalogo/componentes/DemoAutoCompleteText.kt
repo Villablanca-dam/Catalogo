@@ -1,7 +1,6 @@
 package edu.villablanca.catalogo.componentes
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.ComposeCompilerApi
 
 /**
  * En Jetpack Compose, el equivalente de AutoCompleteTextView de las vistas tradicionales de Android se puede crear utilizando una combinación de
