@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -21,6 +22,7 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,11 +31,26 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import edu.villablanca.catalogo.R
+import edu.villablanca.catalogo.componentes.DemoAutoCompleteText
+import edu.villablanca.catalogo.componentes.DemoBasicTextField
 import edu.villablanca.catalogo.componentes.DemoButton
+import edu.villablanca.catalogo.componentes.DemoCanvas
+import edu.villablanca.catalogo.componentes.DemoCard
 import edu.villablanca.catalogo.componentes.DemoCheckBox
+import edu.villablanca.catalogo.componentes.DemoDialog
+import edu.villablanca.catalogo.componentes.DemoIconButton
+import edu.villablanca.catalogo.componentes.DemoImage
+import edu.villablanca.catalogo.componentes.DemoMenus
+import edu.villablanca.catalogo.componentes.DemoProgressBar
+import edu.villablanca.catalogo.componentes.DemoRadioButton
+import edu.villablanca.catalogo.componentes.DemoRatingBox
+import edu.villablanca.catalogo.componentes.DemoSlider
+import edu.villablanca.catalogo.componentes.DemoSnarckBar
 import edu.villablanca.catalogo.componentes.DemoSwitch
 import edu.villablanca.catalogo.componentes.DemoText
 import edu.villablanca.catalogo.componentes.DemoSwitch
+import edu.villablanca.catalogo.componentes.DemoTextField
 import edu.villablanca.catalogo.comun.AppBarViewModel
 import edu.villablanca.catalogo.navegacion.Destino
 
@@ -49,12 +66,30 @@ import edu.villablanca.catalogo.navegacion.Destino
 
 internal val losComponentes = listOf<DemoComponente>(
     DemoComponente("Texto", { DemoText() }, "DemoText.kt"),
+    DemoComponente("Texto Entrada", { DemoTextField() }, "DemoTextField.kt"),
     DemoComponente("Boton", { DemoButton()}, "DemoButton.kt"),
     DemoComponente("CheckBox", { DemoCheckBox()}, "DemoCheckBox.kt"),
     DemoComponente("Switch", { DemoSwitch() }, "DemoSwitch.kt"),
+    DemoComponente("Texto autocompletado", { DemoAutoCompleteText() }, "DemoAutoCompleteText.kt"),
+    DemoComponente("Texto Basico Entrada", { DemoBasicTextField() }, "DemoBasicTextField.kt"),
+    DemoComponente("Gráficos Canvas", { DemoCanvas() }, "DemoCanvas.kt"),
+    DemoComponente("Check Box", { DemoCheckBox() }, "DemoCheckBox.kt"),
+    DemoComponente("Dialogos ", { DemoDialog() }, "DemoDialog.kt"),
+    DemoComponente("Botón Icono", { DemoIconButton() }, "DemoIconButton.kt"),
+    DemoComponente("Imagenes", { DemoImage() }, "DemoImage.kt"),
+    DemoComponente("Menus", { DemoMenus() }, "DemoMenus.kt"),
+    DemoComponente("Progress Bar", { DemoProgressBar() }, "DemoProgressBar.kt"),
+    DemoComponente("Radio Button", { DemoRadioButton() }, "DemoRadioButton.kt"),
+    DemoComponente("Rating Box", { DemoRatingBox() }, "DemoRatingBox.kt"),
+    DemoComponente("Slider", { DemoSlider() }, "DemoSlider.kt"),
+    DemoComponente("Snack Bar", { DemoSnarckBar() }, "DemoSnarckBar.kt"),
 )
 /**
- * Pantalla principal
+ * Pantalla principal con scaffold y navegación.
+ * La listda de componentes se encuetna en PantallaLista
+ *
+ * @param context:  Contexto de la Activity. Podríamos obtenerlo localmente
+ *  con LocalContext.current
  */
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -66,18 +101,23 @@ fun PantallaPrincipal(context: Context, modifier: Modifier = Modifier) {
 
     val appBarViewModel: AppBarViewModel = viewModel()
 
+
     Scaffold(
         modifier = Modifier.fillMaxSize(),
         topBar = { MiTopAppBar(appBarViewModel = appBarViewModel, navController = navController) }
     ) { paddingValues ->
         NavHost(navController = navController,
             startDestination = Destino.PLista.ruta,
-            modifier= Modifier.padding(paddingValues)
+            modifier= Modifier
+                .fillMaxWidth()
+                .padding(paddingValues)
             ) {
-            composable(Destino.PLista.ruta) { PantallaLista(losComponentes, navController = navController) }
+            composable(Destino.PLista.ruta) {
+                appBarViewModel.actualizarTitulo("Demo Componentes")
+                appBarViewModel.actualizarCodigoFuente("")
+                PantallaLista(losComponentes, navController = navController) }
             composable(Destino.PCodigoFuente.ruta)   {
-              //  appBarViewModel.actualizarCodigoFuente("DemoText.kt")
-                PantallaCodigoFuente(appBarViewModel,navController)}
+                 PantallaCodigoFuente(appBarViewModel,navController)}
 
             losComponentes.forEach { comp ->
 
@@ -92,21 +132,35 @@ fun PantallaPrincipal(context: Context, modifier: Modifier = Modifier) {
     } // de scaffikd
 }
 
+
+/**
+ *   Barra de app superior
+ *   Incluye el enlace al código fuente usando appBarViewModel
+ *
+ *
+ *   @param appBarViewModel ViewModel
+ *   @param navController
+ */
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MiTopAppBar(appBarViewModel: AppBarViewModel, navController: NavController) {
     val titulo = appBarViewModel.titulo.collectAsState()
+    val uiState = appBarViewModel.uiState.collectAsState()
 
     TopAppBar(
         title = { Text(text = titulo.value ) },
         navigationIcon = {
                 IconButton(onClick = { navController.navigateUp() }) {
-                    Icon(Icons.Filled.ArrowBack, contentDescription = "Atrás")
+                    Icon(Icons.Filled.ArrowBack, contentDescription = stringResource(R.string.atras))
                 }
         } , //
         actions ={
+            if (uiState.value.codigo =="")
+                Text(text = "--")
+            else
             IconButton(onClick = { navController.navigate(Destino.PCodigoFuente.ruta) }) {
-                Icon(Icons.Filled.List , contentDescription = "Código")
+
+                         Icon(Icons.Filled.Edit , contentDescription = stringResource(R.string.codigo))
             }
         }
 

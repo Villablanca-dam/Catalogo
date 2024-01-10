@@ -36,8 +36,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-
-const val URL_BASE="https://raw.githubusercontent.com/Villablanca-dam/catalogo/imac/app/src/main/java/edu/villablanca/catalogo/componentes/"
+// Base de url en github con el codigo fuente
+const val URL_BASE="https://raw.githubusercontent.com/Villablanca-dam/catalogo/master/app/src/main/java/edu/villablanca/catalogo/componentes/"
 /**
  * Pantalla para mostar el código fuente de los ejemplos.
  * Para mejorar la lectura eliminamos los import
@@ -61,19 +61,19 @@ fun PantallaCodigoFuente( vm: AppBarViewModel,navController: NavController, deta
 
     var url = URL_BASE + uiState.value.codigo //  ejemplo "DemoText.kt"
 
-    Log.d("DFUENTE", url)
-/*
+  Log.d("DFUENTE", url)
+    /*
 
-    fun loadFileContent(contexto: Context, fileName: String): String {
-        return try {
-            contexto.assets.open(fileName).bufferedReader().use { it.readText() }
-        } catch (e: IOException) {
-            "Error al cargar el archivo : $fileName"
+        fun loadFileContent(contexto: Context, fileName: String): String {
+            return try {
+                contexto.assets.open(fileName).bufferedReader().use { it.readText() }
+            } catch (e: IOException) {
+                "Error al cargar el archivo : $fileName"
+            }
         }
-    }
 
-    textToShow = loadFileContent(contexto, "Demo${detailItem}.kt")
-*/
+        textToShow = loadFileContent(contexto, "Demo${detailItem}.kt")
+    */
 
 
   //  var contenido by remember { mutableStateOf("Cargando...") }
@@ -89,13 +89,15 @@ fun PantallaCodigoFuente( vm: AppBarViewModel,navController: NavController, deta
                 .fillMaxHeight()
                 .verticalScroll(rememberScrollState())
                 .padding(16.dp),
-            contentAlignment = Alignment.CenterStart
+            contentAlignment = Alignment.Center //Alignment.CenterStart
 
         ) {
             Text(text = textToShow.split("\n") // Divide el texto en líneas
                 .filterNot { line -> line.startsWith("import") } // Elimina las líneas que empiezan con "import"
+                .filterNot { line -> line.startsWith("package") }
                 .joinToString("\n"),
                 modifier = Modifier
+                    .fillMaxWidth()
                     .border(1.dp,Color.Black)
                     .padding(all=10.dp),
 

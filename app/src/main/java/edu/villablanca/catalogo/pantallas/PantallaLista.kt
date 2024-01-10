@@ -28,8 +28,12 @@ fun PantallaLista(listaComp: List<DemoComponente> ,
                   navController: NavController) {
 
 
-    // solo prueba
-    val vm: AppBarViewModel = viewModel()
+    /**
+     * Obtiene la instancia para este contexto de AppBarViewModel o crea
+     * una si no existe
+     */
+
+    val appViewModel: AppBarViewModel = viewModel()
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth(0.8f),
