@@ -7,9 +7,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun DemoButton(modifier: Modifier = Modifier){
+fun DemoButton(){
     Column(
-        modifier=modifier,
+
     ) {
         Text(text = "Demo button")
         Button(onClick = { /*TODO*/ }) {

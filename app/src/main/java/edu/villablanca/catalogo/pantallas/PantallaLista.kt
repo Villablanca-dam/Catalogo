@@ -11,20 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import edu.villablanca.catalogo.componentes.DemoButton
+import edu.villablanca.catalogo.comun.AppBarViewModel
 import edu.villablanca.catalogo.navegacion.Destino
-
-
-internal  val uiComponentes = listOf(
-    "Text",
-    "Button",
-    "TextField")
-
-internal val listaRutas = listOf<Destino>(
-    Destino.PText,
-    Destino.PButton
-)
 
 
 /**
@@ -33,36 +24,33 @@ internal val listaRutas = listOf<Destino>(
  * @param  navController
  */
 @Composable
-fun PantallaLista(navController: NavController) {
+fun PantallaLista(listaComp: List<DemoComponente> ,
+                  navController: NavController) {
 
+
+    // solo prueba
+    val vm: AppBarViewModel = viewModel()
 
     LazyColumn(
         modifier = Modifier.fillMaxWidth(0.8f),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.SpaceEvenly
+        verticalArrangement = Arrangement.Bottom
     ) {
         // item { Text(text = "Estoy en la PantallaLista") }
-        /*  items(uiComponentes) { item ->
+
+        items(listaComp) { destino ->
             Button(
                 modifier = Modifier.fillMaxWidth(0.8f),
-                onClick = {  navController.navigate("detail/$item") }
-            ) {
-                Text(text = item,
+                onClick =  {
 
-
-                )
-            }
-        }*/
-        items(listaRutas) { destino ->
-            Button(
-                modifier = Modifier.fillMaxWidth(0.8f),
-                onClick = { navController.navigate(destino.ruta) }
+                    navController.navigate(destino.ruta)
+                }
             ) {
                 Text(
-                    text = destino.ruta,
+                    text =" ${destino.ruta}",
                 )
-
             }
+
 
         }
     }
