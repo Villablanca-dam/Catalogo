@@ -38,10 +38,12 @@ import edu.villablanca.catalogo.componentes.DemoButton
 import edu.villablanca.catalogo.componentes.DemoCanvas
 import edu.villablanca.catalogo.componentes.DemoCard
 import edu.villablanca.catalogo.componentes.DemoCheckBox
+import edu.villablanca.catalogo.componentes.DemoChip
 import edu.villablanca.catalogo.componentes.DemoDialog
 import edu.villablanca.catalogo.componentes.DemoIconButton
 import edu.villablanca.catalogo.componentes.DemoImagen
 import edu.villablanca.catalogo.componentes.DemoImagen
+import edu.villablanca.catalogo.componentes.DemoLazyGrid
 import edu.villablanca.catalogo.componentes.DemoMenus
 import edu.villablanca.catalogo.componentes.DemoProgressBar
 import edu.villablanca.catalogo.componentes.DemoRadioButton
@@ -76,7 +78,7 @@ internal val losComponentes = listOf<DemoComponente>(
     DemoComponente("Texto Basico Entrada", { DemoBasicTextField() }, "DemoBasicTextField.kt"),
     DemoComponente("Gráficos Canvas", { DemoCanvas() }, "DemoCanvas.kt"),
     DemoComponente("Card", { DemoCard() }, "DemoCard.kt"),
-
+    DemoComponente("Chip", { DemoChip() }, "DemoChip.kt"),
     DemoComponente("Check Box", { DemoCheckBox() }, "DemoCheckBox.kt"),
     DemoComponente("Dialogos ", { DemoDialog() }, "DemoDialog.kt"),
     DemoComponente("Botón Icono", { DemoIconButton() }, "DemoIconButton.kt"),
@@ -87,6 +89,7 @@ internal val losComponentes = listOf<DemoComponente>(
     DemoComponente("Rating Box", { DemoRatingBox() }, "DemoRatingBox.kt"),
     DemoComponente("Slider", { DemoSlider() }, "DemoSlider.kt"),
     DemoComponente("Snack Bar", { DemoSnackBar() }, "DemoSnackBar.kt"),
+    DemoComponente("Lazy Grid", {DemoLazyGrid()}, "DemoLazyGrid.kt")
 )
 /**
  * Pantalla principal con scaffold y navegación.
