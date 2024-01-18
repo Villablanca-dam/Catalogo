@@ -75,7 +75,9 @@ internal val losComponentes = listOf<DemoComponente>(
     DemoComponente("Texto autocompletado", { DemoAutoCompleteText() }, "DemoAutoCompleteText.kt"),
     DemoComponente("Texto Basico Entrada", { DemoBasicTextField() }, "DemoBasicTextField.kt"),
     DemoComponente("Gráficos Canvas", { DemoCanvas() }, "DemoCanvas.kt"),
+    DemoComponente("Card", { DemoCard() }, "DemoCard.kt"),
     DemoComponente("Check Box", { DemoCheckBox() }, "DemoCheckBox.kt"),
+
     DemoComponente("Dialogos ", { DemoDialog() }, "DemoDialog.kt"),
     DemoComponente("Botón Icono", { DemoIconButton() }, "DemoIconButton.kt"),
     DemoComponente("Imagenes", { DemoImagen() }, "DemoImagen.kt"),
