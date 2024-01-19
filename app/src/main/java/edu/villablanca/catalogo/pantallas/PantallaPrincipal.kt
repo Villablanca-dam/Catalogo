@@ -80,6 +80,7 @@ internal val losComponentes = listOf<DemoComponente>(
     DemoComponente("Card", { DemoCard() }, "DemoCard.kt"),
     DemoComponente("Chip", { DemoChip() }, "DemoChip.kt"),
     DemoComponente("Check Box", { DemoCheckBox() }, "DemoCheckBox.kt"),
+
     DemoComponente("Dialogos ", { DemoDialog() }, "DemoDialog.kt"),
     DemoComponente("Botón Icono", { DemoIconButton() }, "DemoIconButton.kt"),
     DemoComponente("Imagenes", { DemoImagen() }, "DemoImagen.kt"),
