@@ -9,10 +9,12 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentWidth
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -29,11 +31,11 @@ import edu.villablanca.catalogo.R
 @Preview
 @Composable
 fun DemoRatingBox() {
-    RatingBarWithTextColumn()
+    RatingBarConTitulo()
 }
 
 @Composable
-fun RatingBarWithTextColumn() {
+fun RatingBarConTitulo() {
     Column(
         modifier = Modifier.padding(16.dp)
     ) {
@@ -48,10 +50,10 @@ fun RatingBarWithTextColumn() {
     }
 }
 
-
 @Composable
 fun RatingBarComposable() {
     var rating by remember { mutableIntStateOf(0) }
+    var mostrarDialog by remember { mutableStateOf(false) }
 
     val filledStar = painterResource(id = R.drawable.star)
     val outlinedStar = painterResource(id = R.drawable.star_outline)
@@ -69,11 +71,23 @@ fun RatingBarComposable() {
             Image(painter = painter,
                 contentDescription = null,
                 modifier = Modifier
-                    .size(65.dp) // Tamaño más grande para las estrellas
+                    .size(65.dp)
                     .clickable {
                         rating = index + 1
+                        mostrarDialog = true
                     }
                     .padding(4.dp))
         }
     }
+
+    if (mostrarDialog) {
+        DialogRatingBar(puntuacion = rating, alCerrar = { mostrarDialog = false })
+    }
+}
+
+@Composable
+fun DialogRatingBar(puntuacion: Int, alCerrar: () -> Unit) {
+    AlertDialog(onDismissRequest = alCerrar, title = { Text(text = "Puntuación") }, text = {
+        Text(text = "Has dado una puntuación de $puntuacion estrellas.")
+    }, confirmButton = {})
 }
