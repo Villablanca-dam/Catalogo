@@ -52,7 +52,7 @@ fun DemoMenus(){
                 .onGloballyPositioned { coordinates ->
                     tamanioTexto = coordinates.size.toSize()
                 },
-            label = { Text("Opciones") },
+            label = { Text("OPCIONES") },
             trailingIcon = {
                 Icon(icono, "contentDescription",
                     Modifier.clickable { expandido = !expandido })
