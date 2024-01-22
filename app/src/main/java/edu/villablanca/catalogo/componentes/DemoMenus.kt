@@ -3,7 +3,6 @@ package edu.villablanca.catalogo.componentes
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
@@ -34,45 +33,45 @@ import androidx.compose.ui.unit.toSize
 @Composable
 fun DemoMenus(){
     var expandido by remember { mutableStateOf(false) }
-    val opciones = listOf("Op1", "Op2", "Op3", "Op4")
-    var textoSeleccionado by remember { mutableStateOf("") }
-    var tamanoTexto by remember { mutableStateOf(Size.Zero) }
+    val opciones = listOf("op1", "Op2", "Op3", "Op4")
+    var selectedText by remember { mutableStateOf("") }
+
+    var textfieldSize by remember { mutableStateOf(Size.Zero) }
 
     val icono = if (expandido)
         Icons.Filled.KeyboardArrowUp
     else
         Icons.Filled.KeyboardArrowDown
 
+
     Column(Modifier.padding(20.dp)) {
         OutlinedTextField(
-            value = textoSeleccionado,
-            onValueChange = { textoSeleccionado = it },
+            value = selectedText,
+            onValueChange = { selectedText = it },
             modifier = Modifier
                 .fillMaxWidth()
                 .onGloballyPositioned { coordinates ->
-                    tamanoTexto = coordinates.size.toSize()
+                    //This value is used to assign to the DropDown the same width
+                    textfieldSize = coordinates.size.toSize()
                 },
-            label = {
-                Text("OPCIONES") },
+            label = { Text("Opciones") },
             trailingIcon = {
                 Icon(icono, "contentDescription",
                     Modifier.clickable { expandido = !expandido })
             }
         )
-
         DropdownMenu(
             expanded = expandido,
             onDismissRequest = { expandido = false },
             modifier = Modifier
-                //.fillMaxWidth()
-                .width(with(LocalDensity.current) { tamanoTexto.width.toDp() })
+                .width(with(LocalDensity.current) { textfieldSize.width.toDp() })
         ) {
             opciones.forEach { label ->
                 DropdownMenuItem(
                     text = {
                         Text(text = label)
                 } ,onClick = {
-                    textoSeleccionado = label
+                    selectedText = label
                     expandido = false
                 })
             }
