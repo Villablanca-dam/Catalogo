@@ -34,9 +34,8 @@ import androidx.compose.ui.unit.toSize
 fun DemoMenus(){
     var expandido by remember { mutableStateOf(false) }
     val opciones = listOf("op1", "Op2", "Op3", "Op4")
-    var selectedText by remember { mutableStateOf("") }
-
-    var textfieldSize by remember { mutableStateOf(Size.Zero) }
+    var textoSelecionado by remember { mutableStateOf("") }
+    var tamanioTexto by remember { mutableStateOf(Size.Zero) }
 
     val icono = if (expandido)
         Icons.Filled.KeyboardArrowUp
@@ -46,13 +45,12 @@ fun DemoMenus(){
 
     Column(Modifier.padding(20.dp)) {
         OutlinedTextField(
-            value = selectedText,
-            onValueChange = { selectedText = it },
+            value = textoSelecionado,
+            onValueChange = { textoSelecionado = it },
             modifier = Modifier
                 .fillMaxWidth()
                 .onGloballyPositioned { coordinates ->
-                    //This value is used to assign to the DropDown the same width
-                    textfieldSize = coordinates.size.toSize()
+                    tamanioTexto = coordinates.size.toSize()
                 },
             label = { Text("Opciones") },
             trailingIcon = {
@@ -64,14 +62,14 @@ fun DemoMenus(){
             expanded = expandido,
             onDismissRequest = { expandido = false },
             modifier = Modifier
-                .width(with(LocalDensity.current) { textfieldSize.width.toDp() })
+                .width(with(LocalDensity.current) { tamanioTexto.width.toDp() })
         ) {
             opciones.forEach { label ->
                 DropdownMenuItem(
                     text = {
                         Text(text = label)
                 } ,onClick = {
-                    selectedText = label
+                        textoSelecionado = label
                     expandido = false
                 })
             }
