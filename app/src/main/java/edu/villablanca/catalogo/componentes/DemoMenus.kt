@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.toSize
 @Composable
 fun DemoMenus(){
     var expandido by remember { mutableStateOf(false) }
-    val opciones = listOf("op1", "Op2", "Op3", "Op4")
+    val opciones = listOf("Op1", "Op2", "Op3", "Op4")
     var textoSelecionado by remember { mutableStateOf("") }
     var tamanioTexto by remember { mutableStateOf(Size.Zero) }
 
