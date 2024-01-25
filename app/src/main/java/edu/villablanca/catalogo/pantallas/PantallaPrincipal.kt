@@ -2,17 +2,12 @@ package edu.villablanca.catalogo.pantallas
 
 import android.annotation.SuppressLint
 import android.content.Context
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Edit
-import androidx.compose.material.icons.filled.List
-import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -23,9 +18,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
@@ -41,8 +33,7 @@ import edu.villablanca.catalogo.componentes.DemoCheckBox
 import edu.villablanca.catalogo.componentes.DemoChip
 import edu.villablanca.catalogo.componentes.DemoDialog
 import edu.villablanca.catalogo.componentes.DemoIconButton
-import edu.villablanca.catalogo.componentes.DemoImagen
-import edu.villablanca.catalogo.componentes.DemoImagen
+import edu.villablanca.catalogo.componentes.DemoImage
 import edu.villablanca.catalogo.componentes.DemoLazyGrid
 import edu.villablanca.catalogo.componentes.DemoMenus
 import edu.villablanca.catalogo.componentes.DemoProgressBar
@@ -50,10 +41,8 @@ import edu.villablanca.catalogo.componentes.DemoRadioButton
 import edu.villablanca.catalogo.componentes.DemoRatingBox
 import edu.villablanca.catalogo.componentes.DemoSlider
 import edu.villablanca.catalogo.componentes.DemoSnackBar
-import edu.villablanca.catalogo.componentes.DemoSnackBar
 import edu.villablanca.catalogo.componentes.DemoSwitch
 import edu.villablanca.catalogo.componentes.DemoText
-import edu.villablanca.catalogo.componentes.DemoSwitch
 import edu.villablanca.catalogo.componentes.DemoTextField
 import edu.villablanca.catalogo.comun.AppBarViewModel
 import edu.villablanca.catalogo.navegacion.Destino
@@ -83,7 +72,7 @@ internal val losComponentes = listOf<DemoComponente>(
 
     DemoComponente("Dialogos ", { DemoDialog() }, "DemoDialog.kt"),
     DemoComponente("Botón Icono", { DemoIconButton() }, "DemoIconButton.kt"),
-    DemoComponente("Imagenes", { DemoImagen() }, "DemoImagen.kt"),
+    DemoComponente("Imagenes", { DemoImage() }, "DemoImagen.kt"),
     DemoComponente("Menus", { DemoMenus() }, "DemoMenus.kt"),
     DemoComponente("Progress Bar", { DemoProgressBar() }, "DemoProgressBar.kt"),
     DemoComponente("Radio Button", { DemoRadioButton() }, "DemoRadioButton.kt"),
